@@ -23,7 +23,7 @@ def parse_kla(KLA):  #  Теперь точно работает классно
     return cve_id
 
 def cve_replace(cve): # Допилить if на CVSSv3 и CVSSv2, а так работает классно
-    API = '/?apiKey=d6d8eb83-1a01-4847-9538-a84f6f387920'
+    API = 'API'
     url = 'https://services.nvd.nist.gov/rest/json/cve/1.0/' + cve + API
     response = requests.get(url, verify=False)
     parse_text = response.json()
