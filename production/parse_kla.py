@@ -68,8 +68,8 @@ if __name__ == "__main__":
     if len(sys.argv) == 1:
         print("Error!\nUsage: python3 %s " % sys.argv[0] + "file.txt")
         exit()
+    file_in = str(sys.argv[1])
     try:
-        file_in = str(sys.argv[1])
         fout = open('output.txt', 'w')
         kla_list = read2list_kla(file_in)
         ip_list = read2list_ip(file_in)
