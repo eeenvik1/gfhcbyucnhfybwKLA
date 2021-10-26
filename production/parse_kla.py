@@ -65,26 +65,24 @@ def read2list_ip(file):
 
 
 if __name__ == "__main__":
-
     if len(sys.argv) == 1:
-    	print("Error!\nUsage: python3 %s " % sys.argv[0] + "file.txt")
-    	exit()
-    file = sys.argv[1]
-    
+        print("Error!\nUsage: python3 %s " % sys.argv[0] + "file.txt")
+        exit()
     try:
-    	fout = open('output.txt', 'w')
-    	kla_list = read2list_kla(file)
-    	ip_list = read2list_ip(file)
-    	for n,i in enumerate(kla_list, start = 0):
-    		list_to_str_kla = ''.join(kla_list[n])
-    		buff = parse_kla(list_to_str_kla)
-    		for cve in buff:
-    			list_to_str_ip = ', '.join(ip_list[n])
-    			print(f'На IP: {list_to_str_ip} присутствует:', file = fout)
-    			cve_replace(cve)
-    	print(f'Done!')
-    	fout.close()
+        file_in = str(sys.argv[1])
+        fout = open('output.txt', 'w')
+        kla_list = read2list_kla(file_in)
+        ip_list = read2list_ip(file_in)
+        for n,i in enumerate(kla_list, start = 0):
+    	    list_to_str_kla = ''.join(kla_list[n])
+    	    buff = parse_kla(list_to_str_kla)
+    	    for cve in buff:
+                list_to_str_ip = ', '.join(ip_list[n])
+                print(f'На IP: {list_to_str_ip} присутствует:', file = fout)
+                cve_replace(cve)
+        print(f'Done!')
+        fout.close()
     except:
-    	print(f'Error!\nNo such file or directory: {file}')
-    	fout.close()
+        print("Error!\nNo such file: %s " % sys.argv[1])
+        fout.close()
 
