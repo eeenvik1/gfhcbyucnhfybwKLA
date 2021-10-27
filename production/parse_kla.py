@@ -24,6 +24,9 @@ def parse_kla(KLA):  #  Теперь точно работает классно
 
 def cve_replace(cve): # Допилить if на CVSSv3 и CVSSv2, а так работает классно
     API = 'API'
+    if( API == 'API'):
+    	print(f'Вставь токен API в функцию cve_replace')
+    	exit()
     url = 'https://services.nvd.nist.gov/rest/json/cve/1.0/' + cve + API
     response = requests.get(url, verify=False)
     parse_text = response.json()
@@ -43,9 +46,9 @@ def cve_replace(cve): # Допилить if на CVSSv3 и CVSSv2, а так р�
     print(f'CVSSv3 Score: {score}', file = fout)
     print(f'CVSSv3 vector: {vector}\n', file = fout)
 
-def read2list_kla(file):
+def read2list_kla(file_in):
     kla_line = []
-    with open(file, 'r', encoding="utf-8") as file:
+    with open(file_in, 'r', encoding="utf-8") as file:
         for i in file:
             buff = i.strip()
             regex_kla = re.findall(r'KLA\d{4,7}', buff)
@@ -53,9 +56,9 @@ def read2list_kla(file):
                 kla_line.append(regex_kla)
     return kla_line
     
-def read2list_ip(file):
+def read2list_ip(file_in):
     ip_line = []
-    with open(file, 'r', encoding="utf-8") as file:
+    with open(file_in, 'r', encoding="utf-8") as file:
         for i in file:
             buff = i.strip()
             regex_ip = re.findall(r'\d{1,3}[.]\d{1,3}[.]\d{1,3}[.]\d{1,3}', buff)
@@ -69,6 +72,7 @@ if __name__ == "__main__":
         print("Error!\nUsage: python3 %s " % sys.argv[0] + "file.txt")
         exit()
     file_in = str(sys.argv[1])
+
     try:
         fout = open('output.txt', 'w')
         kla_list = read2list_kla(file_in)
