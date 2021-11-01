@@ -31,6 +31,8 @@ def parse_kla(KLA): # Теперь точно работает классно
 
 
 def cve_replace(cve, IP, HOSTNAME):  # Допилить if на CVSSv3 и CVSSv2, а так работает классно
+    global solution
+    global solutions
     API = 'API'
     if (API == 'API'):
         print(f'Ключ API')
